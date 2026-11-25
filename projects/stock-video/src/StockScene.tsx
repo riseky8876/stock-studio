@@ -31,7 +31,7 @@ export function StockScene({ from, to, accent, caption }: StockSceneProps) {
           opacity: glow,
         }}
       />
-      {caption ? (
+      {false ? (
         <AbsoluteFill
           style={{
             justifyContent: "center",
