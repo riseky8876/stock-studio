@@ -56,8 +56,33 @@ for (const v of variations) {
   }
 }
 
+// Render the full motion graphic AiWorkflow (vertical 1080x1920, 12s).
+const aiOut = resolve(outDir, "ai-workflow.mp4");
+console.log(`\n=== Rendering AiWorkflow -> ${aiOut}`);
+if (dryRun) {
+  console.log("  [dry-run] npx remotion " + ["render", entry, "AiWorkflow", aiOut, `--concurrency=${concurrency}`].join(" "));
+} else {
+  const aiR = spawnSync("npx", [
+    "remotion",
+    "render",
+    entry,
+    "AiWorkflow",
+    aiOut,
+    `--concurrency=${concurrency}`,
+  ], {
+    cwd: projectRoot,
+    stdio: "inherit",
+    shell: false,
+  });
+  if (aiR.status !== 0) {
+    console.error(`  FAILED AiWorkflow (exit ${aiR.status})`);
+    failed++;
+  }
+}
+
 if (failed) {
   console.error(`\n${failed} clip(s) failed to render.`);
   process.exit(1);
 }
 console.log(`\nAll ${variations.length} clips rendered to ${outDir}`);
+console.log(`AiWorkflow rendered to ${aiOut}`);
