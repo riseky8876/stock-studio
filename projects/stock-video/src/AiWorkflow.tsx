@@ -1,6 +1,6 @@
 import { AbsoluteFill, interpolate, useCurrentFrame, spring } from "remotion";
 import { Bot, Sparkles, TrendingUp } from "lucide-react";
-import { Text } from "remotion";
+import { Text } from "@remotion/components";
 
 const FPS = 30;
 const DURATION = 360; // 12s
