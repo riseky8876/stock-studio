@@ -1,4 +1,4 @@
-import { AbsoluteFill, interpolate, useCurrentFrame, Text } from "remotion";
+import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 
 export type StockSceneProps = {
   from: string;
@@ -7,9 +7,9 @@ export type StockSceneProps = {
   caption?: string;
 };
 
-// A clean, loopable animated gradient + optional caption — generic stock look,
-// upgraded per-niche via `generate-variations.mjs`.
-export function StockScene({ from, to, accent, caption }: StockSceneProps) {
+// A clean, loopable animated gradient — generic stock look, upgraded per-niche
+// via palettes in variations.json (see scripts/generate-variations.mjs).
+export function StockScene({ from, to, accent }: StockSceneProps) {
   const frame = useCurrentFrame();
   const angle = interpolate(frame, [0, 150], [0, 360], {
     extrapolateRight: "extend",
@@ -31,24 +31,6 @@ export function StockScene({ from, to, accent, caption }: StockSceneProps) {
           opacity: glow,
         }}
       />
-      {caption ? (
-        <AbsoluteFill
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            padding: 80,
-          }}
-        >
-          <Text
-            fontSize={72}
-            fontWeight="bold"
-            color="#ffffff"
-            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-          >
-            {caption}
-          </Text>
-        </AbsoluteFill>
-      ) : null}
     </AbsoluteFill>
   );
 }
