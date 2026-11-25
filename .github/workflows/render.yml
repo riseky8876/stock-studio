@@ -5,6 +5,8 @@ name: Render Stock Batches
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1" # setiap Senin 06:00 UTC -> auto batch
   push:
     branches: [main]
     paths:
@@ -14,6 +16,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   render:
@@ -53,3 +56,45 @@ jobs:
           name: stock-metadata
           path: metadata/metadata.csv
           if-no-files-found: error
+
+  notify:
+    needs: render
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open issue when batch fails
+        if: failure() && github.event_name != 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Stock batch failed: ${context.sha.slice(0, 7)}`,
+              body: [
+                `Batch render gagal pada commit \`${context.sha.slice(0, 7)}\`.`,
+                ``,
+                `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ].join('\n'),
+              labels: ['stock', 'bug'],
+            });
+
+      - name: Open issue when batch is ready
+        if: success() && github.event_name != 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Stock batch ready: ${context.sha.slice(0, 7)}`,
+              body: [
+                `Batch render berhasil pada commit \`${context.sha.slice(0, 7)}\`.`,
+                ``,
+                `Clips + metadata tersedia di workflow run:`,
+                `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ].join('\n'),
+              labels: ['stock', 'ready'],
+            });

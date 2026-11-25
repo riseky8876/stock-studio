@@ -40,6 +40,7 @@ adalah hoaks, jangan dipakai, berisiko blokir akun).
 - [x] Project Remotion starter → `projects/stock-video/` (StockScene, variations.json, render/batch.mjs).
 - [x] Generator metadata + validator CSV jalan (test OK, negative-case OK).
 - [x] Setup workflow GitHub Actions render batch + generate CSV (`.github/workflows/render.yml`).
+- [x] Workflow ditambah: schedule cron (auto batch) + auto-open issue (success/failure).
 - [ ] Render clip pertama lewat CI, upload manual ke portal.
 
 ## Langkah berikutnya (untuk percakapan baru)
