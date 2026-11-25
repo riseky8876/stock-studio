@@ -180,6 +180,3 @@ export function AiWorkflow() {
     </AbsoluteFill>
   );
 }
-
-export { AiWorkflow };
-export default AiWorkflow;
