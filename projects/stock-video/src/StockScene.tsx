@@ -31,7 +31,7 @@ export function StockScene({ from, to, accent, caption }: StockSceneProps) {
           opacity: glow,
         }}
       />
-      {false ? (
+      {caption ? (
         <AbsoluteFill
           style={{
             justifyContent: "center",
@@ -40,13 +40,10 @@ export function StockScene({ from, to, accent, caption }: StockSceneProps) {
           }}
         >
           <Text
-            style={{
-              fontSize: 72,
-              fontWeight: "bold",
-              color: "#ffffff",
-              textAlign: "center",
-              fontFamily: "Arial, Helvetica, sans-serif",
-            }}
+            fontSize={72}
+            fontWeight="bold"
+            color="#ffffff"
+            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
           >
             {caption}
           </Text>
