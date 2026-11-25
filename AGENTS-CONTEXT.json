@@ -41,6 +41,7 @@ adalah hoaks, jangan dipakai, berisiko blokir akun).
 - [x] Generator metadata + validator CSV jalan (test OK, negative-case OK).
 - [x] Setup workflow GitHub Actions render batch + generate CSV (`.github/workflows/render.yml`).
 - [x] Workflow ditambah: schedule cron (auto batch) + auto-open issue (success/failure).
+- [x] Asset upgrade: variasi niche (Finance/Tech/Health/Travel) via `generate-variations.mjs`; caption via `Text` sempat coba → gagal render (React #130) → dikembalikan ke scene gradient bersih (sudah terverifikasi green).
 - [ ] Render clip pertama lewat CI, upload manual ke portal.
 
 ## Langkah berikutnya (untuk percakapan baru)
