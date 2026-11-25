@@ -1,33 +1,98 @@
 [
   {
-    "id": "gradient-blue-01",
-    "props": { "from": "#0ea5e9", "to": "#1e3a8a", "accent": "#ffffff" },
+    "id": "niche-finance-01",
+    "niche": "Finance",
+    "props": {
+      "from": "#0f172a",
+      "to": "#1e3a8a",
+      "accent": "#38bdf8",
+      "caption": "Grow your business"
+    },
     "metadata": {
-      "title": "Abstract blue gradient background loop",
-      "keywords": ["abstract", "gradient", "blue", "background", "motion", "loop", "animation", "minimal"],
-      "category": "Graphic Resources",
+      "title": "Finance growth abstract motion",
+      "keywords": [
+        "finance",
+        "business",
+        "money",
+        "growth",
+        "chart",
+        "banking",
+        "wealth"
+      ],
+      "category": "Business",
       "releases": "none",
       "generative_ai": true
     }
   },
   {
-    "id": "gradient-sunset-02",
-    "props": { "from": "#f97316", "to": "#7c2d12", "accent": "#fde68a" },
+    "id": "niche-technology-01",
+    "niche": "Technology",
+    "props": {
+      "from": "#1e1b4b",
+      "to": "#0ea5e9",
+      "accent": "#67e8f9",
+      "caption": "Innovate tomorrow"
+    },
     "metadata": {
-      "title": "Warm sunset orange gradient motion background",
-      "keywords": ["sunset", "gradient", "orange", "warm", "background", "motion", "loop", "abstract"],
-      "category": "Graphic Resources",
+      "title": "Technology digital network motion",
+      "keywords": [
+        "technology",
+        "tech",
+        "digital",
+        "network",
+        "data",
+        "innovation",
+        "software"
+      ],
+      "category": "Technology",
       "releases": "none",
       "generative_ai": true
     }
   },
   {
-    "id": "gradient-forest-03",
-    "props": { "from": "#22c55e", "to": "#052e16", "accent": "#bbf7d0" },
+    "id": "niche-health-01",
+    "niche": "Health",
+    "props": {
+      "from": "#052e16",
+      "to": "#22c55e",
+      "accent": "#bbf7d0",
+      "caption": "Live well, move more"
+    },
     "metadata": {
-      "title": "Green forest gradient background loop",
-      "keywords": ["green", "forest", "gradient", "nature", "background", "motion", "loop", "abstract"],
-      "category": "Graphic Resources",
+      "title": "Health wellness motion abstract",
+      "keywords": [
+        "health",
+        "fitness",
+        "wellness",
+        "energy",
+        "lifestyle",
+        "exercise"
+      ],
+      "category": "Lifestyle",
+      "releases": "none",
+      "generative_ai": true
+    }
+  },
+  {
+    "id": "niche-travel-01",
+    "niche": "Travel",
+    "props": {
+      "from": "#7c2d12",
+      "to": "#f97316",
+      "accent": "#fde68a",
+      "caption": "Explore the world"
+    },
+    "metadata": {
+      "title": "Travel adventure globe motion",
+      "keywords": [
+        "travel",
+        "adventure",
+        "globe",
+        "plane",
+        "explore",
+        "wanderlust"
+      ],
+      "category": "Travel",
       "releases": "none",
       "generative_ai": true
     }

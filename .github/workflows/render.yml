@@ -34,6 +34,9 @@ jobs:
         run: npm install
         working-directory: projects/stock-video
 
+      - name: Generate variations
+        run: node projects/stock-video/scripts/generate-variations.mjs
+
       - name: Render all variations
         run: node render/batch.mjs
         working-directory: projects/stock-video
