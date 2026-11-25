@@ -1,0 +1,22 @@
+{
+  "name": "stock-video",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remotion project for auto-generating stock video assets (rendered in CI).",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "node render/batch.mjs",
+    "render:one": "remotion render src/index.ts StockScene out/out.mp4",
+    "metadata": "node ../../skills/stock-metadata/scripts/gen-metadata.mjs --manifest variations.json --out ../../metadata/metadata.csv"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "typescript": "^5.5.0"
+  }
+}

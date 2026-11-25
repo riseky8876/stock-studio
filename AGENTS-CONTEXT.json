@@ -1,0 +1,57 @@
+# Stock-Studio — Konteks Proyek (baca file ini di awal percakapan baru)
+
+> Cara pakai: di percakapan baru, cukup ketik:
+> **"Baca /storage/emulated/0/Stock-Studio/AGENTS-CONTEXT.json dan lanjutkan sesuai isinya."**
+> Agent akan membaca file ini dan langsung paham seluruh rencana tanpa perlu dijelaskan ulang.
+
+## Ringkasan
+Proyek untuk **auto-generate aset stock (video dari Remotion + metadata CSV)** dan
+mempersiapkan upload ke Adobe Stock Contributor. **Upload tetap manual di portal**
+(Adobe tidak punya API/SFTP untuk contributor — jalur SFTP yang beredar di internet
+adalah hoaks, jangan dipakai, berisiko blokir akun).
+
+## Keputusan yang sudah disepakati
+1. Install **skill Remotion resmi** (`remotion-dev/skills`) — untuk membuat video/motion otomatis.
+2. Buat **custom skill `stock-metadata`** — menghasilkan `metadata.csv` (Title ≤70 char,
+   Keywords ≤50, Category, Releases) dari aset hasil render.
+3. Pipeline **batch render + CSV via GitHub Actions** (HP Android tidak cukup kuat render;
+   Node ada tapi Chrome headless berat di HP).
+4. **TIDAK ADA SFTP / upload otomatis** — upload manual di contributor.stock.adobe.com
+   (fitur bulk upload + copy-paste metadata dari CSV). Centang "generative AI" + Submit manual.
+
+## Struktur folder
+```
+/storage/emulated/0/Stock-Studio/
+├── AGENTS-CONTEXT.json   ← file ini (konteks untuk percakapan baru)
+├── README.md             ← ringkasan singkat
+├── skills/               ← skill yang dipasang (Remotion + stock-metadata)
+│   ├── remotion-*/      ← dari `npx skills add remotion-dev/skills`
+│   └── stock-metadata/  ← skill custom ini
+├── skills-lock.json     ← lock dari installer skills
+├── projects/             ← project Remotion (video)
+│   └── stock-video/      ← starter project (StockScene, variations.json, batch.mjs)
+├── metadata/             ← CSV metadata hasil generate
+└── .github/workflows/    ← render batch di CI
+```
+
+## Status progres (per 25 Nov 2026)
+- [x] Skill Remotion diinstall (`npx skills add remotion-dev/skills`) → `skills/remotion-*/`.
+- [x] Skill custom `stock-metadata` dibuat → `skills/stock-metadata/SKILL.md` + `scripts/gen-metadata.mjs`.
+- [x] Project Remotion starter → `projects/stock-video/` (StockScene, variations.json, render/batch.mjs).
+- [x] Generator metadata + validator CSV jalan (test OK, negative-case OK).
+- [x] Setup workflow GitHub Actions render batch + generate CSV (`.github/workflows/render.yml`).
+- [ ] Render clip pertama lewat CI, upload manual ke portal.
+
+## Langkah berikutnya (untuk percakapan baru)
+1. Baca file ini.
+2. Skill Remotion: `npx skills add remotion-dev/skills` (atau `npx remotion skills add`).
+3. Buat project Remotion di `projects/`.
+4. Buat skill `stock-metadata` (SKILL.md) sesuai spesifikasi metadata Adobe Stock.
+5. Setup workflow GitHub Actions untuk batch render + generate CSV.
+
+## Catatan penting
+- Adobe Stock TIDAK menyediakan API upload untuk contributor (dikonfirmasi dari
+  developer.adobe.com/stock). Upload hanya lewat portal web.
+- Jangan pernah menjalankan skrip yang mengirim file/kredensial ke server SFTP
+  "Adobe Stock" — server resmi tidak ada; itu pola scam/phishing.
+- Akun contributor: risiko blokir permanen jika memakai bot/otomasi di portal.

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "gradient-blue-01",
+    "props": { "from": "#0ea5e9", "to": "#1e3a8a", "accent": "#ffffff" },
+    "metadata": {
+      "title": "Abstract blue gradient background loop",
+      "keywords": ["abstract", "gradient", "blue", "background", "motion", "loop", "animation", "minimal"],
+      "category": "Graphic Resources",
+      "releases": "none",
+      "generative_ai": true
+    }
+  },
+  {
+    "id": "gradient-sunset-02",
+    "props": { "from": "#f97316", "to": "#7c2d12", "accent": "#fde68a" },
+    "metadata": {
+      "title": "Warm sunset orange gradient motion background",
+      "keywords": ["sunset", "gradient", "orange", "warm", "background", "motion", "loop", "abstract"],
+      "category": "Graphic Resources",
+      "releases": "none",
+      "generative_ai": true
+    }
+  },
+  {
+    "id": "gradient-forest-03",
+    "props": { "from": "#22c55e", "to": "#052e16", "accent": "#bbf7d0" },
+    "metadata": {
+      "title": "Green forest gradient background loop",
+      "keywords": ["green", "forest", "gradient", "nature", "background", "motion", "loop", "abstract"],
+      "category": "Graphic Resources",
+      "releases": "none",
+      "generative_ai": true
+    }
+  }
+]

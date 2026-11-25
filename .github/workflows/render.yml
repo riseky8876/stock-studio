@@ -1,0 +1,55 @@
+name: Render Stock Batches
+
+# Batch render Remotion -> out/<id>.mp4, lalu generate metadata/metadata.csv.
+# Upload ke Adobe Stock tetap MANUAL (ada di portal) — tidak ada di sini.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "projects/stock-video/**"
+      - "skills/stock-metadata/**"
+      - "metadata/**"
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install project dependencies
+        run: npm install
+        working-directory: projects/stock-video
+
+      - name: Render all variations
+        run: node render/batch.mjs
+        working-directory: projects/stock-video
+
+      - name: Generate metadata.csv
+        run: node skills/stock-metadata/scripts/gen-metadata.mjs \
+          --manifest projects/stock-video/variations.json \
+          --out metadata/metadata.csv
+
+      - name: Upload rendered clips
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-clips
+          path: projects/stock-video/out/*.mp4
+          if-no-files-found: error
+
+      - name: Upload metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-metadata
+          path: metadata/metadata.csv
+          if-no-files-found: error
