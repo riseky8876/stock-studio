@@ -39,9 +39,10 @@ jobs:
         working-directory: projects/stock-video
 
       - name: Generate metadata.csv
-        run: node skills/stock-metadata/scripts/gen-metadata.mjs \
-          --manifest projects/stock-video/variations.json \
-          --out metadata/metadata.csv
+        run: |
+          node skills/stock-metadata/scripts/gen-metadata.mjs \
+            --manifest projects/stock-video/variations.json \
+            --out metadata/metadata.csv
 
       - name: Upload rendered clips
         uses: actions/upload-artifact@v4
